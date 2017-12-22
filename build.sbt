@@ -1,3 +1,5 @@
+import scala.sys.process.Process
+
 name := """code-lab"""
 organization := "com.linkebon"
 
@@ -10,8 +12,16 @@ scalaVersion := "2.12.3"
 libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
 
-// Adds additional packages into Twirl
-//TwirlKeys.templateImports += "com.example.controllers._"
+lazy val buildFrontends = taskKey[Unit]("Build frontends")
 
-// Adds additional packages into conf/routes
-// play.sbt.routes.RoutesKeys.routesImport += "com.example.binders._"
+buildFrontends := {
+  counterAppFrontend.value
+}
+
+lazy val counterAppFrontend = taskKey[Unit]("Install npm")
+counterAppFrontend := {
+  val frontendPath = baseDirectory.value.getPath + "/frontend/react-redux-counter-app"
+  println("test" + frontendPath)
+  Process(s"npm install --prefix $frontendPath").!
+  Process(s"npm run generateFrontend --prefix $frontendPath").!
+}
