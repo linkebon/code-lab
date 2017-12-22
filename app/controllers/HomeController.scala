@@ -13,4 +13,8 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
   def reactreduxCounterApp() = Action { request =>
     Ok(views.html.counterApp())
   }
+
+  def reactreduxTodoApp() = Action { request =>
+    Ok(views.html.todoApp())
+  }
 }

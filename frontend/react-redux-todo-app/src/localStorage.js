@@ -1,7 +1,7 @@
 
 export const loadState = () => {
   try {
-      const serializedState = localStorage.getItem("counterAppState");
+      const serializedState = localStorage.getItem("todoAppState");
       if(serializedState === null) {
           return undefined;
       }
@@ -15,7 +15,7 @@ export const loadState = () => {
 export const saveState = (state) => {
   try  {
       const stateAsString = JSON.stringify(state);
-      localStorage.setItem("counterAppState", stateAsString)
+      localStorage.setItem("todoAppState", stateAsString)
   }catch(err) {
       console.log("Error saving state..");
   }
