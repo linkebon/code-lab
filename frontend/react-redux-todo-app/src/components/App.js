@@ -4,10 +4,16 @@ import AddTodo from '../container/AddTodo';
 
 const App = () => {
     return (
-        <div>
-            <AddTodo/>
-            <br />
-            <TodoContainer/>
+        <div className="container" style={{}}>
+            <div className="row">
+                <div className="col-md-8">
+                    <AddTodo/>
+                </div>
+            </div>
+            <br/>
+            <div className="container">
+                <TodoContainer/>
+            </div>
         </div>
     )
 };

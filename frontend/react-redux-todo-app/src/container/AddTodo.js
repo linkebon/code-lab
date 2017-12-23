@@ -20,12 +20,12 @@ class AddTodo extends Component {
                     this.props.dispatch(addTodo(Date.now(), text.value));
                 }}>
 
-                    <textarea id="todoText" ref={node => {
+                    <textarea id="todoText" rows="6" cols="70" style={{resize: 'none'}} ref={node => {
                         text = node;
                     }}>
                     </textarea>
                     <br/>
-                    <button className="button is-primary" type="submit">
+                    <button className="btn-default btn-primary" type="submit">
                         Add Todo
                     </button>
                 </form>

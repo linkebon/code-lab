@@ -10,12 +10,15 @@ class TodoContainer extends Component {
     render() {
         return (
             <div className="container">
-                {this.props.todos.map((todo, index) => {
-                    return (
-                        <Todo id={todo.id} text={todo.text} key={index}/>
-                    );
-                })}
-            </div>)
+                <div className="row">
+                    {this.props.todos.map((todo, index) => {
+                        return (
+                            <Todo id={todo.id} text={todo.text} key={index}/>
+                        );
+                    })}
+                </div>
+            </div>
+        )
     }
 }
 
