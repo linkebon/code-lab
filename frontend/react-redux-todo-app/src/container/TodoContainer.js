@@ -12,6 +12,10 @@ class TodoContainer extends Component {
         return (number % 2) !== 0;
     };
 
+    renderTodoInitially(index) {
+        return index === 0 || index === 1;
+    }
+
     render() {
         let todo;
         return (
@@ -20,11 +24,13 @@ class TodoContainer extends Component {
                     {this.props.todos.map((todo, index) => {
                         if (this.isEven(index)) {
                             todo = <div className='col-md-5' key={index}>
-                                <Todo id={todo.id} text={todo.text} />
+                                <Todo id={todo.id} text={todo.text} renderInitially={this.renderTodoInitially(index)}/>
                                 <div className="col-md-2"/>
                             </div>
                         } else {
-                            todo = <div className='col-md-5' key={index}><Todo id={todo.id} text={todo.text}/></div>
+                            todo = <div className='col-md-5' key={index}>
+                                <Todo id={todo.id} text={todo.text} renderInitially={this.renderTodoInitially(index)}/>
+                            </div>
                         }
                         return todo;
                     })}
