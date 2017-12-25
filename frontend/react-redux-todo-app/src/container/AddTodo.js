@@ -12,23 +12,27 @@ class AddTodo extends Component {
         let text;
         return (
             <div className="container">
-                <form onSubmit={(e) => {
-                    e.preventDefault();
-                    if (!text.value.trim()) {
-                        return;
-                    }
-                    this.props.dispatch(addTodo(Date.now(), text.value));
-                }}>
+                <div className="row">
+                    <div className="col-md-5">
+                        <form onSubmit={(e) => {
+                            e.preventDefault();
+                            if (!text.value.trim()) {
+                                return;
+                            }
+                            this.props.dispatch(addTodo(Date.now(), text.value));
+                        }}>
 
-                    <textarea id="todoText" rows="6" cols="70" style={{resize: 'none'}} ref={node => {
+                    <textarea id="todoText" rows="6" cols="70" style={{resize: 'none', width: '100%', height: '100%'}} ref={node => {
                         text = node;
                     }}>
                     </textarea>
-                    <br/>
-                    <button className="btn-default btn-primary" type="submit">
-                        Add Todo
-                    </button>
-                </form>
+                            <br/>
+                            <button className="btn-default btn-primary" type="submit">
+                                Add Todo
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         )
     }
