@@ -7,14 +7,26 @@ class TodoContainer extends Component {
         super(props);
     }
 
+    isEven(number) {
+
+        return (number % 2) !== 0;
+    };
+
     render() {
+        let todo;
         return (
             <div className="container">
                 <div className="row">
                     {this.props.todos.map((todo, index) => {
-                        return (
-                            <Todo id={todo.id} text={todo.text} key={index}/>
-                        );
+                        if (this.isEven(index)) {
+                            todo = <div className='col-md-5' key={index}>
+                                <Todo id={todo.id} text={todo.text} />
+                                <div className="col-md-2"/>
+                            </div>
+                        } else {
+                            todo = <div className='col-md-5' key={index}><Todo id={todo.id} text={todo.text}/></div>
+                        }
+                        return todo;
                     })}
                 </div>
             </div>

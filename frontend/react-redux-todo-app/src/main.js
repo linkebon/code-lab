@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css'
 import React from 'react';
 import {render} from 'react-dom';
 import {createStore} from 'redux';
@@ -8,7 +8,6 @@ import {Provider} from 'react-redux';
 import App from './components/App';
 import reducers from './reducers'
 import {loadState, saveState} from "./localStorage";
-
 
 const initialState = loadState();
 const store = createStore(
@@ -20,6 +19,7 @@ const store = createStore(
 store.subscribe(() => {
     saveState(store.getState());
 });
+
 render(
     <Provider store={store}>
         <App/>
