@@ -16,12 +16,19 @@ lazy val buildFrontends = taskKey[Unit]("Build frontends")
 
 buildFrontends := {
   counterAppFrontend.value
+  todoAppFrontend.value
 }
 
-lazy val counterAppFrontend = taskKey[Unit]("Install npm")
+lazy val counterAppFrontend = taskKey[Unit]("generate counterApp")
 counterAppFrontend := {
   val frontendPath = baseDirectory.value.getPath + "/frontend/react-redux-counter-app"
-  println("test" + frontendPath)
+  Process(s"npm install --prefix $frontendPath").!
+  Process(s"npm run generateFrontend --prefix $frontendPath").!
+}
+
+lazy val todoAppFrontend = taskKey[Unit]("generate todoApp")
+todoAppFrontend := {
+  val frontendPath = baseDirectory.value.getPath + "/frontend/react-redux-todo-app"
   Process(s"npm install --prefix $frontendPath").!
   Process(s"npm run generateFrontend --prefix $frontendPath").!
 }
