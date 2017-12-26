@@ -24,12 +24,12 @@ class TodoContainer extends Component {
                     {this.props.todos.map((todo, index) => {
                         if (this.isEven(index)) {
                             todo = <div className='col-md-5' key={index}>
-                                <Todo id={todo.id} text={todo.text} renderInitially={this.renderTodoInitially(index)}/>
+                                <Todo id={todo.id} text={todo.text} collapsed={todo.collapsed} forceRender={this.renderTodoInitially(index)}/>
                                 <div className="col-md-2"/>
                             </div>
                         } else {
                             todo = <div className='col-md-5' key={index}>
-                                <Todo id={todo.id} text={todo.text} renderInitially={this.renderTodoInitially(index)}/>
+                                <Todo id={todo.id} text={todo.text} collapsed={todo.collapsed} forceRender={this.renderTodoInitially(index)}/>
                             </div>
                         }
                         return todo;
