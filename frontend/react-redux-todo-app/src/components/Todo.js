@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {removeTodo, toggleTodo} from '../actions';
 
 class Todo extends Component {
     constructor(props) {
@@ -14,7 +11,7 @@ class Todo extends Component {
 
     render() {
         let collapsed = this.isCollapsed(this.props.collapsed, this.props.forceRender);
-        console.log(collapsed);
+        const {toggleTodo, removeTodo} = this.props;
         return (
             <div style={{whiteSpace: 'pre-line', border: '1px solid black', marginTop: '1%', padding: '1% 1% 1% 1%'}}>
                 <div className="pull-right">
@@ -23,12 +20,12 @@ class Todo extends Component {
                        aria-controls={'#' + this.props.id}
                        onClick={(e) => {
                            e.preventDefault();
-                           this.props.dispatch(toggleTodo(this.props.id, !this.props.collapsed));
+                           toggleTodo(this.props.id, !this.props.collapsed);
                        }}>
                         {new Date(this.props.id).toLocaleString()}</a>
                     <button className="btn-danger" style={{marginLeft: '10px'}} onClick={(e) => {
                         e.preventDefault();
-                        this.props.dispatch(removeTodo(this.props.id))
+                        removeTodo(this.props.id);
                     }}>x
                     </button>
                 </div>
@@ -41,10 +38,4 @@ class Todo extends Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(Object.assign({}, removeTodo, toggleTodo), dispatch)
-    }
-}
-
-export default connect(mapDispatchToProps)(Todo)
+export default Todo;

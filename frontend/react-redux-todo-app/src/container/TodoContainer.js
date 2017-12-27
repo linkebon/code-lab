@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import Todo from '../components/Todo';
+import * as TodoActions from '../actions';
+import {bindActionCreators} from "redux";
 import {connect} from 'react-redux';
-import Todo from './Todo';
 
 class TodoContainer extends Component {
     constructor(props) {
@@ -17,6 +19,8 @@ class TodoContainer extends Component {
     }
 
     render() {
+        let {dispatch} = this.props;
+        let actions = bindActionCreators(TodoActions, dispatch);
         let todo;
         return (
             <div className="container">
@@ -24,12 +28,14 @@ class TodoContainer extends Component {
                     {this.props.todos.map((todo, index) => {
                         if (this.isEven(index)) {
                             todo = <div className='col-md-5' key={index}>
-                                <Todo id={todo.id} text={todo.text} collapsed={todo.collapsed} forceRender={this.renderTodoInitially(index)}/>
+                                <Todo id={todo.id} text={todo.text} collapsed={todo.collapsed} {...actions}
+                                      forceRender={this.renderTodoInitially(index)}/>
                                 <div className="col-md-2"/>
                             </div>
                         } else {
                             todo = <div className='col-md-5' key={index}>
-                                <Todo id={todo.id} text={todo.text} collapsed={todo.collapsed} forceRender={this.renderTodoInitially(index)}/>
+                                <Todo id={todo.id} text={todo.text} collapsed={todo.collapsed} {...actions}
+                                      forceRender={this.renderTodoInitially(index)}/>
                             </div>
                         }
                         return todo;
@@ -40,10 +46,10 @@ class TodoContainer extends Component {
     }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
     return {
         todos: state.todoReducer
-    };
-}
+    }
+};
 
 export default connect(mapStateToProps)(TodoContainer);
