@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {addTodo} from '../actions';
 
 class AddTodo extends Component {
     constructor(props) {
@@ -9,6 +6,7 @@ class AddTodo extends Component {
     }
 
     render() {
+        let {addTodo} = this.props;
         let text;
         return (
             <div className="container">
@@ -19,12 +17,13 @@ class AddTodo extends Component {
                             if (!text.value.trim()) {
                                 return;
                             }
-                            this.props.dispatch(addTodo(Date.now(), text.value));
+                            addTodo(Date.now(), text.value);
                         }}>
 
-                    <textarea id="todoText" rows="6" cols="70" style={{resize: 'none', width: '100%', height: '100%'}} ref={node => {
-                        text = node;
-                    }}>
+                    <textarea id="todoText" rows="6" cols="70" style={{resize: 'none', width: '100%', height: '100%'}}
+                              ref={node => {
+                                  text = node;
+                              }}>
                     </textarea>
                             <br/>
                             <button className="btn-default btn-primary" type="submit">
@@ -38,10 +37,4 @@ class AddTodo extends Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(addTodo, dispatch)
-    }
-}
-
-export default connect(mapDispatchToProps)(AddTodo)
+export default AddTodo
