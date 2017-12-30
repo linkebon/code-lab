@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 import todoReducer from './todoReducer';
+import tweetsReducer from './tweetsReducer';
 
-const todoAppReducers = combineReducers({
-    todoReducer
+export default combineReducers({
+    todoReducer,
+    tweetsReducer
 });
-
-export default todoAppReducers

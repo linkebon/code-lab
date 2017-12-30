@@ -1,18 +1,19 @@
-import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'
 import React from 'react';
 import {render} from 'react-dom';
-import {createStore} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import {Provider} from 'react-redux';
 import App from './components/App';
-import reducers from './reducers'
 import {loadState, saveState} from "./localStorage";
+import dataService from './middleware/DataService';
+import reducers from './reducers'
 
 const initialState = loadState();
-const store = createStore(
+let store = createStore(
     reducers,
     initialState,
+    applyMiddleware(dataService),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
