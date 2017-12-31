@@ -3,19 +3,19 @@ import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'
 import React from 'react';
 import {render} from 'react-dom';
-import {applyMiddleware, createStore} from 'redux';
+import {applyMiddleware, createStore, compose} from 'redux';
 import {Provider} from 'react-redux';
 import App from './components/App';
 import {loadState, saveState} from "./localStorage";
-import dataService from './middleware/DataService';
+import tweetDataService from './middleware/DataService';
 import reducers from './reducers'
 
 const initialState = loadState();
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 let store = createStore(
     reducers,
     initialState,
-    applyMiddleware(dataService),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    composeEnhancers(applyMiddleware(tweetDataService))
 );
 
 store.subscribe(() => {

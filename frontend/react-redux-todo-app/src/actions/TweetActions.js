@@ -3,7 +3,14 @@ import * as actionType from "./ActionType";
 export const updateTweetData = (tweets) => (
     {
         type: actionType.GET_TWEET_DATA_RECEIVED,
-        tweets: tweets
+        tweets: tweets.statuses
+    }
+);
+
+export const updateTweetDataError = (err) => (
+    {
+        type: actionType.GET_TWEET_DATA_ERROR,
+        error: err
     }
 );
 

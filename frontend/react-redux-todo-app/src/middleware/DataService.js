@@ -1,31 +1,36 @@
 import request from 'superagent';
 import * as actionType from '../actions/ActionType';
-import {updateTweetData} from "../actions/TweetActions";
+import {updateTweetData, updateTweetDataError} from "../actions/TweetActions";
 
-const dataService = store => next => action => {
+// curried function for generating a get request function which takes a url route, successAction and errorAction.
+const getApiGenerator = next => (route, successAction, errorAction) =>
+    request
+        .get(route)
+        .end((err, res) => {
+            if (err) {
+                console.log("error: " + err);
+                next(errorAction(err));
+            }
+            const data = JSON.parse(res.text);
+            next(successAction(data));
+        });
 
+
+const tweetDataService = store => next => action => {
     next(action);
+    const getApi = getApiGenerator(next);
     switch (action.type) {
         case actionType.GET_TWEET_DATA:
-            if(action.filter === undefined || action.filter === ""){
+            if (action.filter === undefined || action.filter === "") {
                 break;
             }
             let filter = action.filter;
             let count = action.count ? action.count : '5';
-            request
-                .get('/api/tweets/' + filter + '?count= ' + count)
-                .end((err, res) => {
-                    if (err) {
-                        //todo add error handling
-                        console.log("error: " + err);
-                    }
-                    const data = JSON.parse(res.text);
-                    next(updateTweetData(data.statuses));
-                });
-
+            getApi('/api/tweets/' + filter + '?count= ' + count, updateTweetData, updateTweetDataError);
+            break;
         default:
             break;
     }
 };
 
-export default dataService;
+export default tweetDataService;
