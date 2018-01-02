@@ -46,7 +46,7 @@ class TweetsContainer extends Component {
                     {this.props.tweets.map((tweet, index) => {
                         return (
                             <div className="col-md-6" key={index}>
-                                <Tweet tweet={tweet}/>
+                                <Tweet tweet={tweet} id={index}/>
                             </div>
                         )
                     })}
