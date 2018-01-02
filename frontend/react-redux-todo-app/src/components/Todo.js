@@ -13,13 +13,13 @@ class Todo extends Component {
         let collapsed = this.isCollapsed(this.props.collapsed, this.props.forceRender);
         const {toggleTodo, removeTodo} = this.props;
         return (
-            <div style={{whiteSpace: 'pre-line', border: '1px solid black', marginTop: '1%', padding: '1% 1% 1% 1%'}}>
-                <div className="pull-right">
+            <div className="rounded infoContainer">
+                <div className="float-right">
                     <a className={`text-muted`}>
                         {new Date(this.props.id).toLocaleString()}
                     </a>
 
-                    <button className="btn-default" style={{marginLeft: '10px'}} data-toggle="collapse"
+                    <button className="btn-outline-secondary" style={{marginLeft: '10px'}} data-toggle="collapse"
                             href={'#' + this.props.id}
                             aria-expanded="false"
                             aria-controls={'#' + this.props.id}

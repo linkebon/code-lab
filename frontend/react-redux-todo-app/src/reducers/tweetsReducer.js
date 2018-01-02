@@ -5,7 +5,7 @@ const tweetsReducer = (state = [], action) => {
         case actionType.GET_TWEET_DATA_RECEIVED:
             return action.tweets;
         case actionType.GET_TWEET_DATA_ERROR:
-            console.log("error i reducer");
+            return [];
         case actionType.GET_TWEET_DATA:
         default:
             return state;

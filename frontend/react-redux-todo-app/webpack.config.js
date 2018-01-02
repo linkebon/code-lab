@@ -18,17 +18,20 @@ const config = {
         rules: [
             {
                 test: /\.less$/,
-                use: [{
-                    loader: "style-loader"
-                }, {
-                    loader: "css-loader", options: {
-                        sourceMap: true
-                    }
-                }, {
-                    loader: "less-loader", options: {
-                        sourceMap: true
-                    }
-                }]
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader", options: {
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: "less-loader", options: {
+                            sourceMap: true
+                        }
+                    }]
             },
             {
                 test: /\.css$/,
@@ -42,20 +45,6 @@ const config = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
-            },
-            {
-                test: /\.less$/,
-                use: [{
-                    loader: "style-loader"
-                }, {
-                    loader: "css-loader"
-                }, {
-                    loader: "less-loader", options: {
-                        paths: [
-                            path.resolve(__dirname, "node_modules")
-                        ]
-                    }
-                }]
             },
             {
                 test: /\.(svg|png|jpe?g|gif|eot|otf|woff2?|ttf)$/,
@@ -76,6 +65,13 @@ const config = {
             'process.env': {
                 'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
             }
+
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            Popper: ['popper.js', 'default']
         })
     ],
     devServer: {

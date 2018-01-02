@@ -8,7 +8,7 @@ class Tweet extends Component {
     render() {
         let {tweet} = this.props;
         return (
-            <div style={{border: '1px solid black'}}>
+            <div className="rounded infoContainer">
                 <p>{tweet.text}</p>
             </div>
         )

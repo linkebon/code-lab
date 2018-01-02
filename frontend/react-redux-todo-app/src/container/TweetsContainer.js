@@ -22,17 +22,25 @@ class TweetsContainer extends Component {
     }
 
     render() {
-        let noValidFilter = "Search tweets";
         return (
             <div className="container">
                 <h2>Tweets</h2>
-                <label for="filter">Search tweet</label>
-                <input id="filter" style={{maxWidth: "30%"}} className="form-control" type="text" onChange={(e) => {
-                    e.preventDefault();
-                    if (e.target.value.length > 3 && e.target.value !== noValidFilter) {
-                        this.tweets(e.target.value);
-                    }
-                }} />
+                <form className="form-inline">
+                    <input id="filter" placeholder={"Search tweets"} className="form-control" type="text" onChange={(e) => {
+                        e.preventDefault();
+                        let searchValue = e.target.value;
+                        if (searchValue.length > 3) {
+                            let count = $("#tweetCount").val();
+                            this.tweets(e.target.value, count);
+                        }
+                    }}/>
+                    <input id="tweetCount" defaultValue={5} className="form-control small" onChange={(e) => {
+                        e.preventDefault();
+                        if (!/^\d+$/.test(e.target.value)) {
+                            e.target.value = '';
+                        }
+                    }}/>
+                </form>
                 <br/>
                 <div className="row">
                     {this.props.tweets.map((tweet, index) => {

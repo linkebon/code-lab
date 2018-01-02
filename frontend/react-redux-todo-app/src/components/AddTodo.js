@@ -20,13 +20,12 @@ class AddTodo extends Component {
                             addTodo(Date.now(), text.value);
                         }}>
 
-                    <textarea id="todoText" rows="6" cols="70" style={{resize: 'none', width: '100%', height: '100%'}}
-                              ref={node => {
+                    <textarea id="todoText" className="todoTextArea" rows="6" cols="70" ref={node => {
                                   text = node;
                               }}>
                     </textarea>
                             <br/>
-                            <button className="btn-default btn-primary" type="submit">
+                            <button className="btn-primary" type="submit">
                                 Add Todo
                             </button>
                         </form>

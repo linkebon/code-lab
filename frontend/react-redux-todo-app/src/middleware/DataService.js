@@ -8,7 +8,7 @@ const getApiGenerator = next => (route, successAction, errorAction) =>
         .get(route)
         .end((err, res) => {
             if (err) {
-                console.log("error: " + err);
+                console.log(route + " error" + err);
                 next(errorAction(err));
             }
             const data = JSON.parse(res.text);

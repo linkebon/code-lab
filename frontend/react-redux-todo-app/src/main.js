@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap';
-import 'bootstrap/dist/css/bootstrap.css'
+import './less/style.less';
 import React from 'react';
 import {render} from 'react-dom';
 import {applyMiddleware, createStore, compose} from 'redux';
