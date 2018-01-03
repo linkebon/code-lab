@@ -26,14 +26,15 @@ class TweetsContainer extends Component {
             <div className="container">
                 <h2>Tweets</h2>
                 <form className="form-inline">
-                    <input id="filter" placeholder={"Search tweets"} className="form-control" type="text" onChange={(e) => {
-                        e.preventDefault();
-                        let searchValue = e.target.value;
-                        if (searchValue.length > 3) {
-                            let count = $("#tweetCount").val();
-                            this.tweets(e.target.value, count);
-                        }
-                    }}/>
+                    <input id="filter" placeholder={"Search tweets"} className="form-control" type="text"
+                           onChange={(e) => {
+                               e.preventDefault();
+                               let searchValue = e.target.value;
+                               if (searchValue.length > 3) {
+                                   let count = $("#tweetCount").val();
+                                   this.tweets(e.target.value, count);
+                               }
+                           }}/>
                     <input id="tweetCount" defaultValue={5} className="form-control small" onChange={(e) => {
                         e.preventDefault();
                         if (!/^\d+$/.test(e.target.value)) {
@@ -45,7 +46,7 @@ class TweetsContainer extends Component {
                 <div className="row">
                     {this.props.tweets.map((tweet, index) => {
                         return (
-                            <div className="col-md-6" key={index}>
+                            <div className="col-md-5" key={index}>
                                 <Tweet tweet={tweet} id={index}/>
                             </div>
                         )
