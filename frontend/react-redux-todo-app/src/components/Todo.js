@@ -35,7 +35,7 @@ class Todo extends Component {
                     </button>
                 </div>
                 <br/>
-                <div id={this.props.id} className={`collapse ${collapsed ? '' : 'in'}`}
+                <div id={this.props.id} className={`collapse in ${collapsed ? '' : 'show'}`}
                      aria-expanded={`${collapsed ? 'false' : 'true'}`}>
                     <p>{this.props.text}</p>
                 </div>

@@ -18,7 +18,7 @@ class Tweet extends Component {
                     </button>
                 </div>
                 <br/>
-                <div id={this.props.id}>
+                <div id={this.props.id} className={"collapse in show"}>
                     <p>{tweet.text}</p>
                 </div>
             </div>
